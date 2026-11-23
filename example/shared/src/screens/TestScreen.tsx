@@ -4,7 +4,7 @@ import { TrueSheet, TrueSheetProvider } from '@lodev09/react-native-true-sheet';
 
 import { BLUE, DARK, GAP, LIGHT_GRAY, SPACING } from '../utils';
 import { Button, Header, Spacer } from '../components';
-import { BasicSheet, PromptSheet, FlatListSheet } from '../components/sheets';
+import { BasicSheet, PromptSheet, FlatListSheet, InsetBandSheet } from '../components/sheets';
 
 interface TestScreenProps {
   onGoBack: () => void;
@@ -15,6 +15,7 @@ export const TestScreen = ({ onGoBack }: TestScreenProps) => {
   const promptSheet = useRef<TrueSheet>(null);
   const flatListSheet = useRef<TrueSheet>(null);
   const backgroundSheet = useRef<TrueSheet>(null);
+  const insetBandSheet = useRef<TrueSheet>(null);
 
   return (
     <TrueSheetProvider>
@@ -30,6 +31,7 @@ export const TestScreen = ({ onGoBack }: TestScreenProps) => {
           </Text>
         </View>
         <Button text="Go Back" onPress={onGoBack} />
+        <Button text="Inset Band Sheet" onPress={() => insetBandSheet.current?.present()} />
         <Spacer />
         <Button text="Basic Sheet" onPress={() => basicSheet.current?.present()} />
         <Button text="Prompt Sheet" onPress={() => promptSheet.current?.present()} />
@@ -40,6 +42,7 @@ export const TestScreen = ({ onGoBack }: TestScreenProps) => {
       <BasicSheet dismissible={false} initialDetentIndex={0} dimmed={false} ref={basicSheet} />
       <PromptSheet ref={promptSheet} />
       <FlatListSheet ref={flatListSheet} />
+      <InsetBandSheet ref={insetBandSheet} />
       <TrueSheet
         ref={backgroundSheet}
         grabberOptions={{
